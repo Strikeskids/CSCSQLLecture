@@ -1,10 +1,13 @@
 doctype html
 html(lang='en')
   head
-    script(type='text/javascript' src='./js/impress.js')
     link(rel='stylesheet' type='text/css' href='./css/main.css')
   body
     #impress
-      #sql.step
-        
-      #inject.step
+      #sql.step: h1 SQL
+      #inject.step(data-z=-1 data-rotate-y=180): h1 SQL Injection
+
+
+    script(type='text/javascript' src='./js/impress.js')
+    script.
+      impress().init()

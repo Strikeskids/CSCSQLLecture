@@ -1,0 +1,10 @@
+@import "bourbon/bourbon";
+
+.step {
+  @include box-sizing(border-box);
+  border-radius: 10px;
+  width: 900px;
+  padding: 40px;
+  margin: 20px auto;
+
+}
