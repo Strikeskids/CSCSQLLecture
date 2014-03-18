@@ -4,8 +4,13 @@ html(lang='en')
     link(rel='stylesheet' type='text/css' href='./css/main.css')
   body
     #impress
-      #sql.step: h1 SQL
-      #inject.step(data-z=-1 data-rotate-y=180): h1 SQL Injection
+      #good-side
+        #sql.step(data-z=-1)
+          #sql-header SQL
+        h1#what-is.step(data-x=300 data-y=0 data-rotate=90 data-scale=0.25) Structured Query Language
+
+      #evil-side
+        #inject.step(data-z=-2 data-rotate-y=180): h1 SQL Injection
 
 
     script(type='text/javascript' src='./js/impress.js')
