@@ -8,7 +8,7 @@ html(lang='en')
         #sql.step(data-z=-1)
           #sql-header SQL
         h1#what-is.step(data-x=300 data-y=0 data-rotate=90 data-scale=0.25) Structured Query Language
-        #structure.step(data-scale=.1, data-x=-300, data-y=75, data-rotate=35)
+        #structure.step(data-scale=.1, data-x=-300, data-y=50, data-rotate=35)
         - var scale = 0.07
         - var yoff = 50
         - var xoff = 40
@@ -51,6 +51,7 @@ html(lang='en')
           code ' OR 1 /*
           code SELECT password FROM users WHERE password = '' OR 1 /*';
         #select-values.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-xs data-y=y0)
+          h2 Special SELECT
           code ' UNION SELECT 'hax0r', 'password';/*
 
       .good-side

@@ -39,22 +39,21 @@ code {
   font-size: $font-size / 1.5;
   font-family: 'Courier New' monospace;
   line-height: 1.2;
-  color: blue;
-  background-color: gray;
   border-radius: 5px;
   display: block;
   margin: 5px 0;
+  color: #93a1a1;
 }
 
 .good-side {
   color: #5e9dc8;
 
-  .step {
-    background-color: #dcf0f7;
+  code {
+    background-color: #fdf6e3;
   }
-
+  
   div#sql {
-    background-image: url('../resources/seaotter.jpg');
+    @include linear-gradient(#003e5f, #025d8c);
     background-size: cover;
     opacity: 1;
     height: $slide-height;
@@ -85,9 +84,14 @@ code {
   color: white;
 
   div#inject {
+    @include linear-gradient(#640909, #b20a0a);
     background-size: cover;
     opacity: 1;
     height: $slide-height;
     width: $slide-width;
+  }
+
+  code {
+    background-color: #073642;
   }
 }
