@@ -50,6 +50,8 @@ html(lang='en')
           h2 Basic Injection
           code ' OR 1 /*
           code SELECT password FROM users WHERE password = '' OR 1 /*';
+        #select-values.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-xs data-y=y0)
+          code ' UNION SELECT 'hax0r', 'password';/*
 
       .good-side
         #coping-strategy-1.step(data-z=-2000 data-scale=scale data-x=x0-2*xs data-y=y0)
@@ -86,7 +88,7 @@ html(lang='en')
       .evil-side
         #benchmark.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-2*xs data-y=y0+2*ys)
           h2 Benchmarking
-          code NULL UNION SELECT BENCHMARK()
+          code NULL UNION SELECT BENCHMARK(10000000,ENCODE('xyz','987'));
 
 
 

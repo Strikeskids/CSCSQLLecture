@@ -82,10 +82,9 @@ code {
 }
 
 .evil-side {
-  color: #f10;
+  color: white;
 
   div#inject {
-    background-image: url('../resources/fire.jpg');
     background-size: cover;
     opacity: 1;
     height: $slide-height;
