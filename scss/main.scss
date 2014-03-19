@@ -1,17 +1,18 @@
 @import "bourbon/bourbon";
 @import "reset";
 
-
 $slide-width: 900px;
 $slide-height: 700px;
 
 $step-padding: 40px;
 
 $line-height: 1.5;
+$font-size: 48px;
 
 body {
   font-family: 'PT Sans', sans-serif;
-  font-size: 48px;
+  font-size: $font-size;
+  background-color: black;
 }
 
 .impress-enabled .step:not(.active) {
@@ -26,9 +27,26 @@ body {
 
   position: absolute;
 
+  @include transition(opacity 1s)
 }
 
-#good-side {
+.slide {
+  width: $slide-width;
+  height: $slide-height;
+}
+
+code {
+  font-size: $font-size / 1.5;
+  font-family: 'Courier New' monospace;
+  line-height: 1.2;
+  color: blue;
+  background-color: gray;
+  border-radius: 5px;
+  display: block;
+  margin: 5px 0;
+}
+
+.good-side {
   color: #5e9dc8;
 
   .step {
@@ -53,9 +71,17 @@ body {
   h1 {
     text-align: center;
   }
+
+  #structure {
+    @extend .slide;
+    background-image: url('../resources/sqltable.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
 }
 
-#evil-side {
+.evil-side {
   color: #f10;
 
   div#inject {

